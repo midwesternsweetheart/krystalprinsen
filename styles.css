@@ -259,3 +259,102 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+/* Mobile / small-screen adjustments (only apply below 700px) */
+@media (max-width: 700px) {
+    .nav-container {
+        padding: 0 1rem;
+        justify-content: center;
+    }
+
+    /* Stack nav links vertically so they fit on phones and remain tappable */
+    .nav-links {
+        flex-direction: column;
+        gap: 0.6rem;
+        align-items: center;
+    }
+
+    .nav-links a {
+        display: block;
+        width: 100%;
+        max-width: 360px;
+        box-sizing: border-box;
+        padding: 0.7rem 0.9rem;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .cart-icon {
+        margin-top: 0.25rem;
+    }
+
+    /* Shrink hero padding and make the hero image scale to phone widths */
+    .hero {
+        padding: 1rem 0;
+    }
+
+    .hero-inner {
+        padding: 0 1rem;
+    }
+
+    .hero-image {
+        max-width: 92%;
+        width: auto;
+        max-height: 360px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 6px 24px rgba(155,79,150,0.12);
+        -webkit-clip-path: inset(0 2px 0 0);
+        clip-path: inset(0 2px 0 0);
+    }
+
+    /* Product grid -> single column on phones for easier scrolling */
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .product-card {
+        margin: 0 auto;
+        max-width: 520px;
+    }
+
+    /* Make product images a bit shorter on phones to keep cards compact */
+    .product-image {
+        height: 180px;
+        object-fit: cover;
+    }
+
+    /* Cover images stack vertically and scale down */
+    .cover-images {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+
+    .cover-image,
+    .main-cover-image {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Reduce spacing in about/custom sections to fit phones */
+    .about,
+    .custom-orders {
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    .about-content,
+    .custom-option {
+        padding: 1rem;
+    }
+
+    /* Slightly smaller cart count bubble */
+    .cart-count {
+        width: 18px;
+        height: 18px;
+        font-size: 0.75rem;
+    }
+}

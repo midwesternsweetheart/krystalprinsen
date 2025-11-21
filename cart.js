@@ -43,9 +43,11 @@ class ShoppingCart {
 }
 
 const cart = new ShoppingCart();
-
+// Ensure the UI is updated once the DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     const cartIcon = document.getElementById('cart-icon');
+    // Refresh the visible count after the DOM is available
+    cart.updateCartCount();
     if (cartIcon) {
         // If the cart icon is an anchor (<a>), allow default navigation to cart page.
         if (cartIcon.tagName && cartIcon.tagName.toLowerCase() === 'a') {
@@ -56,5 +58,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = inProductsFolder ? 'cart.html' : 'products/cart.html';
             });
         }
+    }
+});
+
+// Listen for storage changes from other tabs/windows and sync the cart count
+window.addEventListener('storage', (event) => {
+    if (event.key === 'cart') {
+        try {
+            cart.items = JSON.parse(event.newValue) || [];
+        } catch (e) {
+            cart.items = [];
+        }
+        cart.updateCartCount();
+    }
+});
+
+// When the page becomes visible again, re-read localStorage to ensure the UI matches
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+        try {
+            cart.items = JSON.parse(localStorage.getItem('cart')) || [];
+        } catch (e) {
+            cart.items = [];
+        }
+        cart.updateCartCount();
     }
 });
