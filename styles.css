@@ -1,0 +1,261 @@
+:root {
+    --primary-color: #C8A2C8;  /* Lilac purple */
+    --secondary-color: #E6D7E6;
+    --accent-color: #9B4F96;   /* Deep purple accent */
+    --light-accent: #F0E6F0;   /* Very light purple */
+    --text-color: #333;
+    --white: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-accent);
+    background-image: 
+        linear-gradient(120deg, rgba(200, 162, 200, 0.1) 0%, rgba(155, 79, 150, 0.1) 100%);
+}
+
+/* Make pages stretch to full height and keep footer at bottom on short pages */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* Navigation */
+.navbar {
+    background-color: var(--primary-color);
+    padding: 1.2rem 0;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 6rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.08rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    transition: all 0.22s ease;
+    position: relative;
+}
+
+.nav-links a:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+/* Shop and Social submenu containers (visible only on their pages) */
+.shop-container,
+.social-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.shop-submenu,
+.social-submenu {
+    display: flex;
+    gap: 1.25rem;
+    margin-top: 0.35rem;
+}
+
+.shop-submenu a,
+.social-submenu a {
+    background: transparent;
+    color: var(--white);
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.shop-submenu a.active {
+    background: rgba(255,255,255,0.12);
+}
+
+/* Social Section Styles */
+.social-section {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.social-section h1 {
+    text-align: center;
+    color: var(--accent-color);
+    margin-bottom: 3rem;
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.social-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.social-card i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.social-card h2 {
+    margin-bottom: 1rem;
+}
+
+.social-card p {
+    color: #666;
+}
+
+.social-card:hover {
+    transform: translateY(-10px);
+}
+
+.social-card.facebook i {
+    color: #1877F2;
+}
+
+.social-card.instagram i {
+    color: #E4405F;
+}
+
+.social-card.pinterest i {
+    color: #BD081C;
+}
+
+/* Shopping Cart Icon */
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem 0;
+    background-color: var(--secondary-color);
+}
+
+.hero-image {
+    max-width: 70%;
+    height: auto;
+    border-radius: 12px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 8px 30px rgba(155,79,150,0.12);
+}
+
+/* additional hero inner wrapper to guarantee centering on different pages */
+.hero-inner {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Crop a tiny bit of the right edge to hide any stray pixel line */
+.hero-inner {
+    overflow: hidden;
+}
+
+.hero-image {
+    /* crop 2px from right to remove stray line artifact */
+    -webkit-clip-path: inset(0 2px 0 0);
+    clip-path: inset(0 2px 0 0);
+}
+
+/* About Section */
+.about {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.about h1 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.about-content {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.about-content p {
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+    padding: 1rem 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}

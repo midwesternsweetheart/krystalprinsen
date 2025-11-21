@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Midwestern Sweetheart</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="products.css">
+    <link rel="stylesheet" href="cart.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="bowl-cozies.html">Shop</a>
+                <a href="../social.html">Social</a>
+                <div class="cart-icon" id="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="cart-section">
+            <h1>Your Shopping Cart</h1>
+            <div id="cart-items" class="cart-items">
+                <!-- Cart items will be populated here -->
+            </div>
+            <div class="cart-summary">
+                <div class="subtotal">
+                    Subtotal: <span id="cart-subtotal">$0.00</span>
+                </div>
+                <button id="request-order" class="request-order-btn">Request Order</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Midwestern Sweetheart. All rights reserved.</p>
+    </footer>
+
+    <script src="../cart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            function updateCartDisplay() {
+                const cartItems = document.getElementById('cart-items');
+                const subtotalElement = document.getElementById('cart-subtotal');
+                const items = cart.getItems();
+                
+                if (items.length === 0) {
+                    cartItems.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
+                    subtotalElement.textContent = '$0.00';
+                    return;
+                }
+
+                const subtotal = items.reduce((sum, item) => sum + item.price, 0);
+                subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+
+                cartItems.innerHTML = items.map((item, index) => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.alt || item.name}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h3>${item.name}</h3>
+                            <p>$${item.price.toFixed(2)}</p>
+                        </div>
+                        <button class="remove-item-btn" data-index="${index}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            document.getElementById('request-order').addEventListener('click', () => {
+                const items = cart.getItems();
+                if (items.length === 0) {
+                    alert('Your cart is empty!');
+                    return;
+                }
+
+                const itemsList = items.map(item => `\n- ${item.name} ($${item.price.toFixed(2)})`).join('');
+                const total = items.reduce((sum, item) => sum + item.price, 0);
+                
+                const emailBody = `Hi, I am looking to place an order with the following items:${itemsList}\n\nTotal: $${total.toFixed(2)}\n\nPlease let me know pickup availability at Saint Cloud, MN.`;
+                const emailSubject = 'New Order from Midwestern Sweetheart';
+                
+                const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=midwesternsweetheart20@gmail.com&su=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                // Open Gmail compose in a new tab so the customer can send from their own Gmail account
+                window.open(gmailUrl, '_blank');
+            });
+
+            document.getElementById('cart-items').addEventListener('click', (e) => {
+                if (e.target.closest('.remove-item-btn')) {
+                    const index = e.target.closest('.remove-item-btn').dataset.index;
+                    cart.removeItem(index);
+                    updateCartDisplay();
+                }
+            });
+
+            updateCartDisplay();
+        });
+    </script>
+</body>
+</html>

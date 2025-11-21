@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bowl Cozies - Midwestern Sweetheart</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="products.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../cart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <div class="shop-container">
+                    <a href="bowl-cozies.html" class="shop-main">Shop</a>
+                    <div class="shop-submenu">
+                        <a href="bowl-cozies.html" class="active">Bowl Cozies</a>
+                        <a href="pillowcases.html">Pillowcases</a>
+                        <a href="custom-orders.html">Custom Orders</a>
+                    </div>
+                </div>
+                <a href="../social.html">Social</a>
+                <a href="cart.html" class="cart-icon" id="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="product-header">
+                <div class="cover-images">
+                        <img src="../images/example.cover.1.png" alt="bowl cozy cover 1" class="cover-image">
+                        <img src="../images/example.cover.2.png" alt="bowl cozy cover 2" class="cover-image">
+                    </div>
+        </section>
+
+        <section class="products-grid" id="products-container">
+            <!-- Products will be populated by JavaScript -->
+        </section>
+    </main>
+
+    <!-- Removed inline order modal; cart page handles ordering -->
+
+    <footer>
+        <p>&copy; 2025 Midwestern Sweetheart. All rights reserved.</p>
+    </footer>
+
+    <script src="products.js"></script>
+</body>
+</html>
